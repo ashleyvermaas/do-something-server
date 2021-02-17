@@ -11,7 +11,7 @@ const path         = require('path');
 
 
 mongoose
-  .connect('mongodb://localhost/do-something-server', {useNewUrlParser: true})
+  .connect('mongodb://localhost/do-something-server', {useUnifiedTopology: true, useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
