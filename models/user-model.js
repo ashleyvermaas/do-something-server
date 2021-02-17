@@ -19,6 +19,10 @@ const userSchema = new Schema({
     type: String,
     required: [true, "Password is required."],
   },
+  imageUrl: {
+    type: String,
+    default: 'https://www.vets4pets.com/siteassets/species/cat/close-up-of-cat-looking-up.jpg?w=585&scale=down'
+  },
   activities: [{
     type: Schema.Types.ObjectId,
     ref: 'Activity'
