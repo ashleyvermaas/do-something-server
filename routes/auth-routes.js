@@ -16,14 +16,14 @@ authRoutes.post('/signup', (req, res, next) => {
   }
 
   const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
-  if (!regex.text(password)) {
+  if (!regex.test(password)) {
     res.status(400).json({
       message: 'Password must contain a number, lowercase and uppercase letters and be at least 8 characters long.'
     })
     return;
   }
 
-  User.findOne({ email }), (err, foundUser) => {
+  User.findOne({ email }, (err, foundUser) => {
     if (err) {
       res.status(500).json({ message: 'Something went wrong with the email check.'});
       return;
@@ -40,7 +40,7 @@ authRoutes.post('/signup', (req, res, next) => {
     const newUser = new User({
       email: email,
       username: username,
-      password: hashPash
+      password: hashPass
     })
 
     newUser.save(err => {
@@ -57,7 +57,7 @@ authRoutes.post('/signup', (req, res, next) => {
         res.status(200).json(newUser);
       })
     })
-  }
+  })
 });
 
 // Login
