@@ -70,6 +70,7 @@ app.use('/', require('./routes/index'));
 app.use('/api', require('./routes/auth-routes'));
 app.use('/api', require('./routes/activity-routes'));
 app.use('/api', require('./routes/event-routes'));
+app.use('/api', require('./routes/file-upload-routes'));
 
 
 
