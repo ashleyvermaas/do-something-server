@@ -34,7 +34,6 @@ const activities = [
     category: 'Active',
     status: 'To do',
   },
-
 ]
 
 Activity.create(activities)
