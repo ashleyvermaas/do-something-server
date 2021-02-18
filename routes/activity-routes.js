@@ -5,7 +5,7 @@ const User = require('../models/user-model');
 const Activity = require('../models/activity-model');
 
 
-// Get list of all activities
+// View all activities
 activityRoutes.get('/activities', (req, res, next) => {
   Activity.find()
     .then((activities) => {
@@ -17,7 +17,7 @@ activityRoutes.get('/activities', (req, res, next) => {
 });
 
 
-// Get specific activity
+// View specific activity
 activityRoutes.get('/activities/:activityId', (req, res, next) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.activityId)) {
     res.status(400).json({
@@ -51,6 +51,7 @@ activityRoutes.post('/activities/create', (req, res, next) => {
       res.status(500).json(error)
     })
 });
+
 
 // Update specific activity
 activityRoutes.post('/activities/:activityId', (req, res, next) => {

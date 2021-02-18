@@ -5,6 +5,9 @@ const eventSchema = new Schema({
   title: {
     type: String,
   },
+  description: {
+    type: String,
+  },
   activities: [{
     type: Schema.Types.ObjectId,
     ref: 'Activity'
