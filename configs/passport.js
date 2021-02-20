@@ -17,20 +17,24 @@ passport.deserializeUser((userIdFromSession, cb) => {
   });
 });
 
-passport.use(new LocalStrategy((username, password, next) => {
-  User.findOne({ username }, (err, foundUser) => {
-    if(err) {
-      next(err);
-      return;
-    }
-    if(!foundUser) {
-      next(null, false, { message: 'Incorrect username.'});
-      return;
-    }
-    if(!bcrypt.compareSync(password, foundUser.password)) {
-      next(null, false, { message: 'Incorrect password.'});
-      return;
-    }
-    next(null, foundUser);
-  });
+passport.use(new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password'
+  }, (email, password, next) => {
+    User.findOne({ email }, (err, foundUser) => {
+      if(err) {
+        next(err);
+        return;
+      }
+      if(!foundUser) {
+        next(null, false, { message: 'Incorrect email.'});
+        return;
+      }
+      if(!bcrypt.compareSync(password, foundUser.password)) {
+        next(null, false, { message: 'Incorrect password.'});
+        return;
+      }
+      next(null, foundUser);
+    });
 }));
+

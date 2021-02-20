@@ -63,6 +63,18 @@ authRoutes.post('/signup', (req, res, next) => {
 // Login
 authRoutes.post('/login', (req, res, next) => {
   passport.authenticate('local', (err, theUser, failureDetails) => {
+
+    console.log("........");
+    console.log("........");
+    console.log("inside passport callback");
+    console.log(`req.body....`);
+    console.log(JSON.stringify(req.body));
+    console.log(JSON.stringify(req.body));
+    console.log("........");
+    console.log(`err: ${err}`);
+    console.log(`theUser: ${theUser}`);
+    console.log(JSON.stringify(failureDetails));
+
     if (err) {
       res.status(500).json({ message: 'A problem occurred during user authentication.'});
       return;
@@ -71,7 +83,7 @@ authRoutes.post('/login', (req, res, next) => {
       res.status(401).json(failureDetails);
       return;
     }
-
+    
     req.login(theUser, (err) => {
       if (err) {
         res.status(500).json({ message: 'Unable to save the user in session.'});
@@ -88,7 +100,7 @@ authRoutes.post('/logout', (req, res, next) => {
   res.status(200).json({ message: 'Succesful logout.'})
 })
 
-// Authorization
+// Logged in
 authRoutes.get('/loggedin', (req, res, next) => {
   if (req.isAuthenticated()) {
     res.status(200).json(req.user);
