@@ -11,11 +11,12 @@ const path         = require('path');
 const cors         = require('cors');
 const session      = require('express-session');
 const passport     = require('passport');
+const MongoStore = require('connect-mongo')(session);
 
 require('./configs/passport');
 
 mongoose
-  .connect('mongodb://localhost/do-something-server', {useUnifiedTopology: true, useNewUrlParser: true})
+  .connect('mongodb://localhost/do-something-server', {useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -48,9 +49,14 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // Session settings
 app.use(session({
-  secret: "ninja cats live in a submarine and eat banana's",
+  secret: process.env.SESS_SECRET,
   resave: true,
-  saveUninitialized: true
+  saveUninitialized: true,
+  cookie: { maxAge: 1800000 }, // 30 minutes
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 60 * 60 * 24 // 60sec * 60min * 24h => 1 day
+  })
 }));
 
 app.use(passport.initialize());
