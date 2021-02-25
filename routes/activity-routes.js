@@ -54,7 +54,7 @@ activityRoutes.post('/activities/create', (req, res, next) => {
 
 
 // Update specific activity
-activityRoutes.post('/activities/:activityId', (req, res, next) => {
+activityRoutes.post('/activities/:activityId/edit', (req, res, next) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.activityId)) {
     res.status(400).json({
       message: 'Specified id is not valid'

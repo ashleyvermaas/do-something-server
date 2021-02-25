@@ -57,7 +57,7 @@ eventRoutes.post('/events/create', (req, res, next) => {
 
 
 // Update event
-eventRoutes.post('/events/:eventId', (req, res, next) => {
+eventRoutes.put('/events/:eventId', (req, res, next) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.eventId)) {
     res.status(400).json({
       message: 'Specified id is not valid'
