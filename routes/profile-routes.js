@@ -16,7 +16,7 @@ profileRoutes.get('/my-profile', (req, res, next) => {
 
 
 // Update profile
-profileRoutes.put('/my-profile/edit', (req, res, next) => {
+profileRoutes.put('/my-profile', (req, res, next) => {
   User.findByIdAndUpdate(req.user._id, req.body)
   .then((updatedUserInfo) => {
     res.status(200).json(updatedUserInfo)
