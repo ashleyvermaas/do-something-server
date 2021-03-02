@@ -40,7 +40,7 @@ eventRoutes.get('/events/:eventId', (req, res, next) => {
 
 
 // Create event
-eventRoutes.post('/events/create', (req, res, next) => {
+eventRoutes.post('/events', (req, res, next) => {
   Event.create({
     title: req.body.title,
     description: req.body.description,
