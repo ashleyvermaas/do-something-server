@@ -35,6 +35,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+// Cors
+app.use(cors({
+  credentials: true,
+  origin: [process.env.CORS_ALLOWED]
+}))
+
 // Express view engine setup
 app.use(require('node-sass-middleware')({
   src:  path.join(__dirname, 'public'),
@@ -65,11 +71,7 @@ app.use(passport.session());
 // Default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
-// Cors
-app.use(cors({
-  credentials: true,
-  origin: [process.env.CORS_ALLOWED]
-}))
+
 
 // Routes middleware
 app.use('/', require('./routes/index'));
