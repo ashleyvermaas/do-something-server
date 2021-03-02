@@ -57,20 +57,25 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 app.use(session({
   secret: process.env.SESS_SECRET,
   resave: true,
-  saveUninitialized: false,
-  cookie: { maxAge: 1800000 }, // 30 minutes
+  saveUninitialized: true,
+  cookie: {
+    secure: true,
+    sameSite: 'none',
+    httpOnly: false,
+    maxAge: 60000 // 10 * 60 * 1000 ms === 10 min
+  },
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
     ttl: 60 * 60 * 24 // 60sec * 60min * 24h => 1 day
   })
 }));
 
+app.set('trust proxy', 1);
 app.use(passport.initialize());
 app.use(passport.session());
 
 // Default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
-
 
 
 // Routes middleware
