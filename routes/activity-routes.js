@@ -8,6 +8,7 @@ const Activity = require('../models/activity-model');
 // View all activities
 activityRoutes.get('/activities', (req, res, next) => {
   Activity.find()
+    .populate('experiences')
     .then((activities) => {
       res.status(200).json(activities)
     })
@@ -27,8 +28,9 @@ activityRoutes.get('/activities/:activityId', (req, res, next) => {
   }
 
   Activity.findById(req.params.activityId)
+    .populate('experiences')
     .then((activity) => {
-      res.json(activity)
+      res.status(200).json(activity)
     })
     .catch((error) => {
       res.status(500).json(error)
@@ -39,11 +41,12 @@ activityRoutes.get('/activities/:activityId', (req, res, next) => {
 // Create activity
 activityRoutes.post('/activities', (req, res, next) => {
   Activity.create({
-      title: req.body.title,
-      description: req.body.description,
-      category: req.body.category,
-      owner: req.user._id
-    })
+    title: req.body.title,
+    description: req.body.description,
+    category: req.body.category,
+    experiences: [],
+    owner: req.user._id
+  })
     .then((newActivity) => {
       res.status(200).json(newActivity)
     })
@@ -63,8 +66,8 @@ activityRoutes.put('/activities/:activityId', (req, res, next) => {
   }
 
   Activity.findByIdAndUpdate(req.params.activityId, req.body, {
-      new: true
-    })
+    new: true
+  })
     .then((updatedActivity) => {
       res.status(200).json(updatedActivity)
     })
@@ -85,7 +88,7 @@ activityRoutes.delete('/activities/:activityId', (req, res, next) => {
 
   Activity.findByIdAndRemove(req.params.activityId)
     .then(() => {
-      res.json({
+      res.status(200).json({
         message: `Activity with the id ${req.params.activityId} has been removed`
       })
     })
