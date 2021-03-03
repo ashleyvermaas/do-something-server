@@ -17,6 +17,10 @@ const activitySchema = new Schema({
     enum: ['To do', 'Doing', 'Completed'],
     default: 'To do'
   },
+  experiences: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Experience'
+  }],
   owner: {
     type: Schema.Types.ObjectId,
     ref: 'User'

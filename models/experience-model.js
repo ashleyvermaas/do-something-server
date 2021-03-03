@@ -22,7 +22,6 @@ const experienceSchema = new Schema({
   timestamps: true
 });
 
-
 const Experience = mongoose.model('Experience', experienceSchema);
 
 module.exports = Experience;

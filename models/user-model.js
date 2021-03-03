@@ -26,9 +26,9 @@ const userSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Activity'
   }],
-  event: [{
+  experiences: [{
     type: Schema.Types.ObjectId,
-    ref: 'Event'
+    ref: 'Experience'
   }]
 }, {
   timestamps: true
