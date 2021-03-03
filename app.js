@@ -85,6 +85,7 @@ app.use('/api', require('./routes/activity-routes'));
 app.use('/api', require('./routes/event-routes'));
 app.use('/api', require('./routes/file-upload-routes'));
 app.use('/api', require('./routes/profile-routes'));
+app.use('/api', require('./routes/experience-routes'));
 
 
 module.exports = app;
