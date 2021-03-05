@@ -7,7 +7,7 @@ const Activity = require('../models/activity-model');
 
 // View all experiences of specific activity
 experienceRoutes.get('/activities/:activityId/experiences', (req, res, next) => {
-  if (!mongoose.Types.ObjectId.isValid(req.params.experienceId)) {
+  if (!mongoose.Types.ObjectId.isValid(req.params.activityId)) {
     res.status(400).json({
       message: 'Specified id is not valid'
     });
