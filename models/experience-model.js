@@ -14,6 +14,10 @@ const experienceSchema = new Schema({
   imageUrl: {
     type: String,
   },
+  activity: {
+    type: Schema.Types.ObjectId,
+    ref: 'Activity'
+  },
   owner: {
     type: Schema.Types.ObjectId,
     ref: 'User'

@@ -45,7 +45,7 @@ activityRoutes.post('/activities', (req, res, next) => {
     description: req.body.description,
     category: req.body.category,
     experiences: [],
-    owner: req.user._id
+    //owner: req.user._id
   })
     .then((newActivity) => {
       res.status(200).json(newActivity)
