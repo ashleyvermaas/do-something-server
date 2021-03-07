@@ -4,6 +4,17 @@ const experienceRoutes = express.Router();
 const Experience = require('../models/experience-model');
 const Activity = require('../models/activity-model');
 
+// View all experiences
+experienceRoutes.get('/experiences', (req, res, next) => {
+  Experience.find()
+    .then((experiences) => {
+      res.status(200).json(experiences)
+    })
+    .catch((error) => {
+      res.status(500).json(error)
+    })
+});
+
 
 // View all experiences of specific activity
 experienceRoutes.get('/activities/:activityId/experiences', (req, res, next) => {
