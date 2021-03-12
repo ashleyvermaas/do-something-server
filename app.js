@@ -52,6 +52,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
+app.set('trust proxy', 1);
 
 // Session settings
 app.use(session({
@@ -59,8 +60,10 @@ app.use(session({
   resave: true,
   saveUninitialized: false,
   cookie: {
-    secure: true,
-    sameSite: 'none',
+    // secure: true,
+    // sameSite: 'none',
+    sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax', // must be 'none' to enable cross-site delivery
+    secure: process.env.NODE_ENV === "production", // must be true if sameSite='none'
     httpOnly: false,
     maxAge: 60000 // 10 * 60 * 1000 ms === 10 min
   },
@@ -70,7 +73,6 @@ app.use(session({
   })
 }));
 
-app.set('trust proxy', 1);
 app.use(passport.initialize());
 app.use(passport.session());
 
