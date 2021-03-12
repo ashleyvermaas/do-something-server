@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Activity = require('../models/activity-model');
+require('dotenv').config();
 
 const DB_NAME = 'do-something-server';
  
