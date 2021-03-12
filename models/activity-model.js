@@ -10,7 +10,7 @@ const activitySchema = new Schema({
   },
   category: {
     type: String,
-    enum: ['Creative', 'Active', 'Social', 'Funny']
+    enum: ['Creative', 'Active', 'Social', 'Relaxing', 'Educational']
   },
   status: {
     type: String,
