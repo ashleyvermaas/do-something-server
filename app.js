@@ -60,12 +60,9 @@ app.use(session({
   resave: true,
   saveUninitialized: false,
   cookie: {
-    // secure: true,
-    // sameSite: 'none',
-    sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax', // must be 'none' to enable cross-site delivery
-    secure: process.env.NODE_ENV === "production", // must be true if sameSite='none'
-    httpOnly: false,
-    maxAge: 60000 // 10 * 60 * 1000 ms === 10 min
+    sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
+    secure: process.env.NODE_ENV === "production", 
+    maxAge: 60000000 
   },
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
