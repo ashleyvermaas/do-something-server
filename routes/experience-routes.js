@@ -63,8 +63,8 @@ experienceRoutes.post('/activities/:activityId/experiences', (req, res, next) =>
     description: req.body.description,
     rating: req.body.rating,
     imageUrl: req.body.imageUrl,
-    activity: req.params.activityId
-    //owner: req.user._id
+    activity: req.params.activityId,
+    owner: req.user._id
   })
     .then((newExperience) => {
       return Activity.findByIdAndUpdate(req.params.activityId, {
