@@ -6,7 +6,11 @@ const Activity = require('../models/activity-model');
 
 // View all experiences
 experienceRoutes.get('/experiences', (req, res, next) => {
-  Experience.find()
+  const userInSession = req.user;
+  const userId = userInSession ? userInSession._id : null;
+
+
+  Experience.find({user: {$nin: userId}})
     .then((experiences) => {
       res.status(200).json(experiences)
     })
