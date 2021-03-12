@@ -20,7 +20,7 @@ const userSchema = new Schema({
   },
   imageUrl: {
     type: String,
-    default: 'https://www.vets4pets.com/siteassets/species/cat/close-up-of-cat-looking-up.jpg?w=585&scale=down'
+    default: 'avatar.png'
   },
   activities: [{
     type: Schema.Types.ObjectId,
