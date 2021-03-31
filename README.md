@@ -9,7 +9,7 @@ It is a full-stack web application that allows users to find inspiration for fun
 doSomething is the third and final project created by [Ashley Vermaas](https://github.com/ashleyvermaas) during the last module of the [Ironhack](https://ironhack.com/en) Web Development Bootcamp. The project consists of a full-stack web application using the MERN-stack and is deployed via Heroku and Netlify.
 
 ### Linked repository
-The current repository contains the client-side/ front-end. To view the server-side/ back-end click [here](https://github.com/ashleyvermaas/do-something-client).
+The current repository contains the server-side/ back-end. To view the client-side/ front-end click [here](https://github.com/ashleyvermaas/do-something-client).
 
 ### Status
 There are multiple improvements and bug fixes required, the project is still in need of lot's of TLC. 
